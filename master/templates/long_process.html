@@ -1,0 +1,36 @@
+{{define "title"}}Long Process{{end}}
+{{define "body"}}
+    <!--suppress HtmlUnknownTarget, HtmlFormInputWithoutLabel -->
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            white-space: pre-wrap;
+        }
+    </style>
+    <div class="section">
+        <div class="container">
+            <div class="field">
+                <label class="label">Iterations</label>
+                <div class="control">
+                    <input class="input iterations" min="1" name="iterations" type="number" value="20">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Sleep time in ms</label>
+                <div class="control">
+                    <input class="input sleep_time_ms" min="100" name="sleep_time_ms" type="number" value="200">
+                </div>
+            </div>
+
+            <button class="button is-primary start">Start the task</button>
+            <progress class="progress is-info hidden" value="0" max="1">0%</progress>
+            <p class="task_id hidden"></p>
+            <p class="estimated_time hidden"></p>
+            <p class="result hidden"></p>
+        </div>
+    </div>
+    <script src="/static/long_process.js"></script>
+{{ end }}

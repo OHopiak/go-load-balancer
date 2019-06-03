@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "password123$$"
+      POSTGRES_USER: "orest"
+      POSTGRES_DB: "load_balancer"
+  master:
+    build:
+      context: .
+      dockerfile: master.dockerfile
+    ports:
+      - 8000:80
+    environment:
+      MASTER_IP: "0.0.0.0"
+      MASTER_PORT: "80"
+      DB_DRIVER: "postgres"
+      DB_CONN_STRING: 'host=database port=5432 user=orest dbname=load_balancer password=password123$$ sslmode=disable'
+    depends_on:
+      - db
+    links:
+      - "db:database"
+  worker1:
+    build:
+      context: .
+      dockerfile: worker.dockerfile
+    environment:
+      MASTER_IP: "master"
+      MASTER_PORT: "80"
+      DB_DRIVER: "postgres"
+      DB_CONN_STRING: 'host=database port=5432 user=orest dbname=load_balancer password=password123$$ sslmode=disable'
+    depends_on:
+      - db
+      - master
+    links:
+      - "db:database"
+      - "master:master"
+  worker2:
+    build:
+      context: .
+      dockerfile: worker.dockerfile
+    environment:
+      MASTER_IP: "master"
+      MASTER_PORT: "80"
+      DB_DRIVER: "postgres"
+      DB_CONN_STRING: 'host=database port=5432 user=orest dbname=load_balancer password=password123$$ sslmode=disable'
+    depends_on:
+      - db
+      - master
+    links:
+      - "db:database"
+      - "master:master"
+

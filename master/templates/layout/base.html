@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{block "title" .}}Load Balancer{{end}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"/>
+    {{ block "head" .}}{{ end }}
+</head>
+<body>
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarCollapsible">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarCollapsible" class="navbar-menu">
+        <div class="navbar-start">
+            <a href="/" class="navbar-item is-primary">Home</a>
+            <a href="/long_process" class="navbar-item">Long Process</a>
+            <a href="/tasks" class="navbar-item">Tasks</a>
+        </div>
+
+        <div class="navbar-end">
+
+            <div class="navbar-item">
+                <div class="buttons">
+                    {{ if .LoggedIn }}
+                        <a href="/logout" class="button is-primary">Logout</a>
+                    {{ else }}
+                        <a href="/signup" class="button is-primary">
+                            <strong>Sign Up</strong>
+                        </a>
+                        <a href="/login" class="button is-light">Log In</a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+{{ block "body" .}}{{ end }}
+</body>
+</html>

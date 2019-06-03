@@ -1,0 +1,27 @@
+{{define "title"}}Log In{{end}}
+{{define "body"}}
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <!--suppress HtmlUnknownTarget -->
+    <div class="section">
+        <div class="container">
+            <form action="/login" class="form" method="post">
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input name="username" class="input" type="text" placeholder="Username">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input name="password" class="input" type="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="control">
+                    <button class="button is-primary">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{{ end }}
